@@ -13,6 +13,7 @@ public class HelloController {
 
     @RequestMapping("test")
     public String h1(){
+        System.out.println("你好啊 学哥");
         logger.info("==============hello==================");
         return "index";
     }
