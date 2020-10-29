@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>修改页面</h2>
+    <form th:action="@{/student/updateStudent}" method="post" th:object="${student}">
+        <input type="hidden" name="id" th:value="${student.id}">
+        姓名：<input type="text" name="username" th:value="${student.name}"/><br/>
+        性别：<input type="radio" name="sex" value="0" th:attr="checked=${student.sex == 0?true:false}"/>女
+        <input type="radio" name="sex" value="1" th:attr="checked=${student.sex == 1?true:false}"/>男<br/>
+        生日：<input type="date" name="birthday" th:value="${student.birthday}"/><br/>
+        <input type="submit" value="修改"/>
+        <input type="reset" value="重置"/>
+    </form>
+</body>
+</html>
