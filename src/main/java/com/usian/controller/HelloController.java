@@ -14,6 +14,7 @@ public class HelloController {
     @RequestMapping("test")
     public String h1(){
         //注意每天早上要更新同事们的代码
+        //bug修改完成1.0版本完毕
         System.out.println("你好啊 学哥");
         logger.info("==============hello==================");
         return "index";
