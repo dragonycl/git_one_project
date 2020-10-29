@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/student/studentList}" method="post" id="selectForm">
+        学生姓名:<input type="text" name="name" th:value="${name}"><br>
+        出生日期:<input type="date" name="starttime" th:value="${starttime}">-<input type="date" name="endtime" th:value="${endtime}"><br>
+        <input type="hidden" value="1" name="pageNum" id="pageNum">
+        <input type="submit" value="查询" >
+        <input type="button" value="添加" onclick="location.href='add'">
+    </form>
+    <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+            <th width="100px">编号</th>
+            <th width="100px">姓名</th>
+            <th width="100px">性别</th>
+            <th width="100px">生日</th>
+            <th width="100px" colspan="2">操作</th>
+        </tr>
+        <tr th:each="student:${list.list}">
+            <th th:text="${student.id}"></th>
+            <th th:text="${student.name}"></th>
+            <th th:text="${student.sex}==0?'女':'男'"></th>
+            <th th:text="${student.birthday}"></th>
+            <th><a th:href="@{/student/delete(id=${student.id})}">删除</a></th>
+            <th><a th:href="@{/student/findStudentById(id=${student.id})}">修改</a></th>
+        </tr>
+    </table>
+    <input type="button" value="首页" onclick="goPage(1)">
+    <input type="button" value="上一页" th:onclick="'goPage('+${list.prePage}+')'">
+    <input type="button" value="下一页" th:onclick="'goPage('+${list.nextPage}+')'">
+    <input type="button" value="尾页" th:onclick="'goPage('+${list.pages}+')'">
+</body>
+<script>
+    function goPage(pageNum){
+        document.getElementById("pageNum").value=pageNum;
+        document.getElementById("selectForm").submit();
+    }
+</script>
+</html>
